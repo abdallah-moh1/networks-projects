@@ -3,8 +3,9 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from app.config import HOST, PORT
-from app.db import close_db, init_db
-from app.logger import logger
+from app.db.db import close_db, init_db
+from app.routes import api_router
+from app.utils.logger import logger
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -28,15 +29,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Messaging API", lifespan=lifespan)
 
-
-# API routes will be added here under /api
-# Example health check
-@app.get("/api/health")
-async def health():
-    return {"status": "ok"}
-
-
-# WebSocket endpoint will be added here at /api/ws
+# Include main API router
+app.include_router(api_router)
 
 # Serve built frontend
 DIST_DIR = Path(__file__).resolve().parent.parent.parent / "client" / "dist"
