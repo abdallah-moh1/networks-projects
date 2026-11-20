@@ -1,5 +1,12 @@
 # Live Chatting Application
 
+## Requirements
+
+- **Node.js** 18+ (for frontend)
+- **Python** 3.11+ (for backend)
+- **PostgreSQL** (database)
+- **just** (optional, for convenience commands)
+
 ## For development or running it
 
 ```bash
@@ -12,10 +19,6 @@ pip install -r requirements.txt
 cp .env.example .env  # edit DATABASE_URL if needed
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-
-- API at `http://<lan-ip>:8000/api/health`
-- WebSocket at `ws://<lan-ip>:8000/ws`
-- Frontend at `http://<lan-ip>:8000/`
 
 Rebuild frontend (`npm run build` in `client/`) after changes.
 
