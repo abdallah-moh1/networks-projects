@@ -7,8 +7,8 @@ install:
 
 dev:
     cd client && npm run build
-    cd server && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    cd server && python -m app.main
 
 run:
     cd client && npm run build
-    cd server && uvicorn app.main:app --host 0.0.0.0 --port 8000
+    cd server && python -m app.main --prod

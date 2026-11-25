@@ -13,12 +13,19 @@
 # 1. Build frontend
 cd ./client && npm run build
 
-# 2. Start server (serves API + WebSocket + frontend on :8000)
+# 2. Start server
 cd ../server
 pip install -r requirements.txt
-cp .env.example .env  # edit DATABASE_URL if needed
-uvicorn app.main:app --host 0.0.0.0 --port 8000
+cp .env.example .env  # edit DATABASE_URL, HOST, or PORT if needed
+
+# Run in Development mode (with auto-reload)
+python -m app.main
+
+# Or run in Production mode (without reload)
+python -m app.main --prod
 ```
+
+Host and port are automatically read from `server/.env` (`HOST=0.0.0.0` and `PORT=8000` by default).
 
 Rebuild frontend (`npm run build` in `client/`) after changes.
 
@@ -28,10 +35,10 @@ Rebuild frontend (`npm run build` in `client/`) after changes.
 # Install dependencies
 just install
 
-# Development (builds frontend + FastAPI with hot reload)
+# Development (builds frontend + starts FastAPI with hot reload)
 just dev
 
-# Production (builds frontend, runs server)
+# Production (builds frontend, runs server without reload)
 just run
 ```
 
