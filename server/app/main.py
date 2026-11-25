@@ -1,9 +1,9 @@
 import sys
 from contextlib import asynccontextmanager
 
-from app.config import HOST, PORT
+from app.core.config import HOST, PORT
+from app.core.frontend import mount_frontend
 from app.db import close_db, init_db
-from app.frontend import mount_frontend
 from app.middlewares import LoggingMiddleware
 from app.routes import api_router
 from app.utils import get_lan_ip, logger

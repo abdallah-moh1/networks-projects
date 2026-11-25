@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app.config import CLIENT_DIST_DIR
+from app.core.config import CLIENT_DIST_DIR
 from app.utils.logger import logger
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse

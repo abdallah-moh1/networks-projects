@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import asyncpg
-from app.config import DATABASE_URL
+from app.core.config import DATABASE_URL
 
 _pool: asyncpg.Pool | None = None
 _SCHEMA_PATH = Path(__file__).parent / "schema.sql"
