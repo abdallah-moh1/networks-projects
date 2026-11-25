@@ -18,6 +18,13 @@ def mount_frontend(app: FastAPI, dist_dir: Path = CLIENT_DIST_DIR) -> None:
     if assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
 
+    @app.get("/favicon.svg", include_in_schema=False)
+    async def favicon():
+        favicon_file = dist_dir / "favicon.svg"
+        if favicon_file.exists():
+            return FileResponse(favicon_file, media_type="image/svg+xml")
+        raise HTTPException(status_code=404, detail="Favicon not found")
+
     @app.get("/{full_path:path}", include_in_schema=False)
     async def spa_fallback(full_path: str):
         if full_path.split("/")[0] in ("api", "assets"):
