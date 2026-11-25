@@ -31,7 +31,13 @@ async def lifespan(app: FastAPI):
 
 # Create the fastapi app instance
 def create_app() -> FastAPI:
-    app = FastAPI(title="Messaging API", lifespan=lifespan)
+    app = FastAPI(
+        title="Messaging API",
+        lifespan=lifespan,
+        docs_url="/api/docs",
+        redoc_url="/api/redoc",
+        openapi_url="/api/openapi.json",
+    )
     # Add middlewares
     app.add_middleware(LoggingMiddleware)
 
