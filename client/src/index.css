@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent: #7560d8;
+    --background: #121212;
+    --surface: #242424;
+    --text: #ffffff;
+    --text-muted: #a8a8a8;
+    --online: #48d597;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}

@@ -1,5 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { HealthCheck } from "./HealthCheck";
+import { Playground } from "./Playground";
 import { Login } from "./Login";
 import { Chats } from "./Chats";
 import { ChatThread } from "./ChatThread";
@@ -9,7 +9,7 @@ import { SignUp } from "./SignUp";
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: <HealthCheck />,
+    element: <Playground />,
   },
   {
     path: "/login",
