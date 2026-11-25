@@ -47,7 +47,7 @@ class CommunicationManager:
             return
 
         logger.info(
-            f"WebSocket request from user {username!r} at {client_ip}: "
+            f"WebSocket message from user {username!r} at {client_ip}: "
             f"type={message_type[:64]!r}"
         )
 
