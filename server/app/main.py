@@ -9,20 +9,24 @@ from app.utils import get_lan_ip, logger
 from fastapi import FastAPI
 
 
+# Add a context lifespan to handle startup and shutdown logic
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_db()
 
     lan_ip = get_lan_ip()
     if lan_ip:
-        logger.info(f"Server running on LAN: http://{lan_ip}:{PORT}")
+        logger.info(
+            f"Server running locally on http://localhost:{PORT} on LAN http://{lan_ip}:{PORT}"
+        )
     else:
-        logger.info(f"Server running on http://{HOST}:{PORT}")
+        logger.error("The server is running but we failed to get LAN address server")
 
     yield
     await close_db()
 
 
+# Create the fastapi app instance
 def create_app() -> FastAPI:
     app = FastAPI(title="Messaging API", lifespan=lifespan)
     app.include_router(api_router)
@@ -31,7 +35,7 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-
+# Run the server for fastapi
 if __name__ == "__main__":
     import uvicorn
 

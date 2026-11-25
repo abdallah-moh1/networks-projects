@@ -7,6 +7,8 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 
+# Mount our bundled react app to the server at '/' and also allow for '/chats', etc to be handled
+# while not overlapping with the '/api' route
 def mount_frontend(app: FastAPI, dist_dir: Path = CLIENT_DIST_DIR) -> None:
     if not dist_dir.exists():
         logger.error(f"Frontend build not found: {dist_dir}")
